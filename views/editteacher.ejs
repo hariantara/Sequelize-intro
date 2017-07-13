@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <center>
+    <h2>EDIT TEACHER</h2><br><br>
+    <form action="/teacher/edit/<%=id.id%>" method="POST">
+    First Name:<br>
+    <input type="text" name="firstname" value="<%=id.first_name%>">
+    <br><br>
+    Last Name:<br>
+    <input type="text" name="lastname" value="<%=id.last_name%>">
+    <br><br>
+    Email:<br>
+    <input type="text" name="email" value="<%=id.email%>">
+    <br><br>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+  </center>
+  </body>
+</html>

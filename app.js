@@ -11,8 +11,10 @@ app.use(bodyParser.urlencoded({
 })); // hasil post di encoded
 
 
-const home = require('./routers/home')
-app.use('/home', home);
+const subjects = require('./routers/subject')
+const teachers = require('./routers/teacher')
+app.use('/subject', subjects);
+app.use('/teacher', teachers);
 
 
 app.listen(3000);
