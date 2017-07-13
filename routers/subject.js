@@ -28,7 +28,29 @@ router.post('/add', function(req, res){
 router.get('/edit/:id', function(req, res){
   database.Subject.findById(req.params.id)
   .then((result) =>{
-    res.render('editsubject', {id: result})
+    res.render('editsubject', {subdata: result})
+  })
+})
+//edit and update
+router.post('/edit/:id', function(req, res){
+  database.Subject.update({
+    subject_name: `${req.body.subjectname}`,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }, {
+    where: {
+      id: `${req.params.id}`
+    }
+  })
+  .then(()=>{
+    res.redirect('/subject')
+  })
+})
+//delete
+router.get('/delete/:id', function(req, res){
+  database.Subject.destroy({where:{id:`${req.params.id}`}})
+  .then(() =>{
+    res.redirect('/subject')
   })
 })
 

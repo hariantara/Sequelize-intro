@@ -37,8 +37,8 @@
     <tr>
       <td><%= subjectData.id %></td>
       <td><%= subjectData.subject_name %></td>
-      <td><a href="/subject/edit/<%=dataSubjects.id%>"><button type="button" name="Edit">EDIT</button></a></td>
-      <td><a href="/subject/edit/<%=dataSubjects.id%>"><button type="button" name="Delete">DELETE</button></a></td>
+      <td><a href="/subject/edit/<%=subjectData.id%>"><button type="button" name="Edit">EDIT</button></a></td>
+      <td><a href="/subject/delete/<%=subjectData.id%>"><button type="button" name="Delete">DELETE</button></a></td>
       </tr>
       <%})%>
     </table>
