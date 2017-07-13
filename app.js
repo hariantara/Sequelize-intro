@@ -13,8 +13,11 @@ app.use(bodyParser.urlencoded({
 
 const subjects = require('./routers/subject')
 const teachers = require('./routers/teacher')
+const students = require('./routers/students')
+
 app.use('/subject', subjects);
 app.use('/teacher', teachers);
+app.use('/student', students);
 
 
 app.listen(3000);
