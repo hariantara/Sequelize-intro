@@ -1,0 +1,23 @@
+{
+  "name": "sequelize-intro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hariantara/Sequelize-intro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hariantara/Sequelize-intro/issues"
+  },
+  "homepage": "https://github.com/hariantara/Sequelize-intro#readme",
+  "dependencies": {
+    "pg": "^6.4.0",
+    "sequelize": "^4.3.2"
+  }
+}
