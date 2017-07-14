@@ -28,9 +28,34 @@ router.post('/add', function(req, res){
 })
 //edit form
 router.get('/edit/:id', function(req, res){
-  database.Subject.findById(req.params.id)
+  database.Students.findById(req.params.id)
   .then((result) =>{
+    console.log(result);
     res.render('editstudent', {studentsData: result})
+  })
+})
+//edit and update
+router.post('/edit/:id', function(req, res){
+  database.Students.update({
+    first_name: `${req.body.firstname}`,
+    last_name: `${req.body.lastname}`,
+    email: `${req.body.email}`,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }, {
+    where: {
+      id: `${req.params.id}`
+    }
+  })
+  .then(()=>{
+    res.redirect('/student')
+  })
+})
+//delete
+router.get('/delete/:id', function(req, res){
+  database.Students.destroy({where:{id:`${req.params.id}`}})
+  .then(() =>{
+    res.redirect('/student')
   })
 })
 

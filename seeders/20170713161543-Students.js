@@ -19,6 +19,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
-    return queryInterface.removeColumn('Students', 'first_name', 'last_name', 'email')
+    // return queryInterface.removeColumn('Students', 'first_name', 'last_name', 'email')
   }
 };
