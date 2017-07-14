@@ -17,6 +17,18 @@
     Email:<br>
     <input type="text" name="email" value="">
     <br><br>
+    Subject:<br>
+    <select name="SubjectId">
+      <% subjectData.forEach(data =>{ %>
+        <option value="<%= data.id %>"selected>
+          <%= data.subject_name %>
+      </option>
+     <% }) %>
+
+    </select>
+
+
+
     <br><br>
     <input type="submit" value="Submit">
   </form>
