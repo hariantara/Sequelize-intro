@@ -51,6 +51,7 @@ router.post('/edit/:id', function(req, res){
     first_name: `${req.body.firstname}`,
     last_name:`${req.body.lastname}`,
     email:`${req.body.email}`,
+    SubjectId: `${req.body.ContactID}`,
     createdAt: new Date(),
     updatedAt: new Date()
   }, {
