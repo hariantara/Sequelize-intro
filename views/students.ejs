@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+    table {
+      font-family:Gill Sans Extrabold, sans-serif;
+      position: center;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 1px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <title>Contact</title>
+  </head>
+
+  <body>
+  <center><h3>STUDENT INFO</h3><center><br>
+  <a href="/student/add"><button type="Submit" name="Add">Add New Student</button></a>
+  <br><br>
+  <form action="/students" method="POST">
+  <center>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th colspan='2'><center>Option</center></th>
+    </tr>
+    <% dataStudent.forEach(studentData =>{%>
+    <tr>
+      <td><%= studentData.id %></td>
+      <td><%= studentData.first_name %></td>
+      <td><%= studentData.last_name %></td>
+      <td><%= studentData.email %></td>
+      <td><a href="/student/edit/<%=studentData.id%>"><button type="button" name="Edit">EDIT</button></a></td>
+      <td><a href="/student/delete/<%=studentData.id%>"><button type="button" name="Delete">DELETE</button></a></td>
+      </tr>
+      <%})%>
+    </table>
+  </center>
+    </form>
+  </body>
+</html>
