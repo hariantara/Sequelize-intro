@@ -33,7 +33,7 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
-      <th colspan='2'><center>Option</center></th>
+      <th colspan='3'><center>Option</center></th>
     </tr>
     <% dataStudent.forEach(studentData =>{%>
     <tr>
@@ -41,6 +41,7 @@
       <td><%= studentData.first_name %></td>
       <td><%= studentData.last_name %></td>
       <td><%= studentData.email %></td>
+      <td><a href="/student/addSubject/<%=studentData.id%>"><button type="button" name="Edit">ADD SUBJECT</button></a></td>
       <td><a href="/student/edit/<%=studentData.id%>"><button type="button" name="Edit">EDIT</button></a></td>
       <td><a href="/student/delete/<%=studentData.id%>"><button type="button" name="Delete">DELETE</button></a></td>
       </tr>

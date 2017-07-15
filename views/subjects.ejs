@@ -29,14 +29,24 @@
   <center>
   <table>
     <tr>
-      <th>ID</th>
+      <th>No</th>
       <th>Subject Name</th>
+      <th>Teacher</th>
       <th colspan='2'></th>
     </tr>
-    <% dataSubjects.forEach(subjectData =>{%>
+    <% var k=1; dataSubjects.forEach(subjectData =>{%>
     <tr>
-      <td><%= subjectData.id %></td>
+      <td><%=subjectData.id%></td>
       <td><%= subjectData.subject_name %></td>
+      <td>
+
+        <% if(subjectData.Teachers[0] == undefined){%> No teacher
+        <% }else{
+            for(let i = 0; i<subjectData.Teachers.length; i++){%>
+              <%= i+1 +". " + (subjectData.Teachers[i].first_name + subjectData.Teachers[i].last_name)%><br>
+        <%}}%>
+
+      </td>
       <td><a href="/subject/edit/<%=subjectData.id%>"><button type="button" name="Edit">EDIT</button></a></td>
       <td><a href="/subject/delete/<%=subjectData.id%>"><button type="button" name="Delete">DELETE</button></a></td>
       </tr>
