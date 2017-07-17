@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <center>
+    <h2>ADD SUBJECT FOR STUDENT</h2><br><br>
+    <form action="/student/addsubject/<%=sData.id%>" method="POST">
+    <p>First Name:    <%= sData.first_name %></p>
+    <p>Last Name:   <%= sData.last_name %></p>
+    <p>Email:   <%= sData.email %></p>
+    <br><br>
+
+    Subjects:<br>
+
+    <select name="subjectID">
+      <% subjectDat.forEach(data =>{ %>
+        <%
+          var selected = ""
+          if(data.id == conj.SubjectId) {
+            selected = "selected"
+          }
+        %>
+        <option value="<%= data.id %>" <%= selected %> >
+          <%= data.subject_name %>
+      </option>
+     <% }) %>
+
+    </select>
+
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+  </center>
+  </body>
+</html>

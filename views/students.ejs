@@ -29,10 +29,10 @@
   <center>
   <table>
     <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
+      <th><center>ID</center></th>
+      <th><center>First Name</center></th>
+      <th><center>Last Name</center></th>
+      <th><center>Email<center></th>
       <th colspan='3'><center>Option</center></th>
     </tr>
     <% dataStudent.forEach(studentData =>{%>
@@ -41,7 +41,7 @@
       <td><%= studentData.first_name %></td>
       <td><%= studentData.last_name %></td>
       <td><%= studentData.email %></td>
-      <td><a href="/student/addSubject/<%=studentData.id%>"><button type="button" name="Edit">ADD SUBJECT</button></a></td>
+      <td><a href="/student/addsubject/<%= studentData.id %>"><button type="button" name="Edit">ADD SUBJECT</button></a></td>
       <td><a href="/student/edit/<%=studentData.id%>"><button type="button" name="Edit">EDIT</button></a></td>
       <td><a href="/student/delete/<%=studentData.id%>"><button type="button" name="Delete">DELETE</button></a></td>
       </tr>
