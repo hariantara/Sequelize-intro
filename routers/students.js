@@ -2,9 +2,21 @@ const express = require('express');
 var router = express.Router();
 const database = require('../models/');
 
+//untuk validasi saat login, agar tidak bisa langsung membuka link dari browser
+router.use((req,res, next)=>{
+  console.log("ROLEEEE",req.session.user.role);
+  if(req.session.user.role == 'academic' || req.session.user.role == 'headmaster' || req.session.user.role == 'teacher'){
+    next();
+  }else{
+    res.send('You have to login as Headmaster or Academic Coordinator');
+  }
+})
+
 //show teacher table
 router.get('/', function(req, res){
-  database.Students.findAll()
+  database.Students.findAll({
+    order:[["first_name"]]
+  })
   .then((results) =>{
     res.render('students', {dataStudent:results})
   });

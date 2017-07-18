@@ -2,11 +2,21 @@ const express = require('express');
 var router = express.Router();
 const database = require('../models/');
 
+//validasi session, agar tidak bisa masuk langsung ke link
+router.use((req,res, next)=>{
+  if(req.session.user.role == 'academic' || req.session.user.role == 'headmaster' || req.session.user.role == 'teacher'){
+    next();
+  }else{
+    res.send('You have to login as Headmaster or Academic Coordinator');
+  }
+})
+
 //data subject
 router.get('/', function(req, res){
   database.Subject.findAll(
     {
-      include: [database.Teacher]
+      include: [database.Teacher],
+      order:[["id"]]
     }
   )
   .then(results =>{

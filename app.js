@@ -16,7 +16,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  // cookie: { secure: true }
 }))
 
 const subjects = require('./routers/subject')
