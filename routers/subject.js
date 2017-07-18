@@ -64,6 +64,16 @@ router.get('/delete/:id', function(req, res){
     res.redirect('/subject')
   })
 })
+//go to enroll page
+router.get('/enroll/:id', function(req, res){
+  database.Subject.findById(req.params.id)
+  .then((result) =>{
+    database.Students.findById(req.params.id)
+    .then((stud)=>{
+      res.render('enroll', {subjectDatum:result ,studentName: stud})
+    })
+  })
+})
 
 
 module.exports = router;
