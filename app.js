@@ -30,4 +30,5 @@ app.use('/teacher', teachers);
 app.use('/student', students);
 app.use('/', logins);
 
-app.listen(3000);
+// app.listen(3000);
+app.listen(process.env.PORT || 3000);
