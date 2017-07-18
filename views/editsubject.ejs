@@ -6,10 +6,10 @@
   </head>
   <body>
   <center>
-    <h2>ADD SUBJECT</h2><br><br>
-    <form action="/subject/add" method="POST">
+    <h2>EDIT SUBJECT</h2><br><br>
+    <form action="/subject/edit/<%=subdata.id%>" method="POST">
     Subject Name:<br>
-    <input type="text" name="subjectname" value="">
+    <input type="text" name="subjectname" value="<%=subdata.subject_name%>">
     <br><br>
     <br><br>
     <input type="submit" value="Submit">

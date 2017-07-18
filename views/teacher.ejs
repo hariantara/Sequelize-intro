@@ -18,7 +18,7 @@
       background-color: #dddddd;
     }
   </style>
-  <title>Contact</title>
+  <title>Teachers</title>
   </head>
 
   <body>
@@ -29,11 +29,12 @@
   <center>
   <table>
     <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th colspan='2'></th>
+      <th><center>ID</center></th>
+      <th><center>First Name</center></th>
+      <th><center>Last Name</center></th>
+      <th><center>Email</center></th>
+      <th><center>Subject</center></th>
+      <th colspan='2'><center>Option</center></th>
     </tr>
     <% dataTeacher.forEach(teacherData =>{%>
     <tr>
@@ -41,6 +42,13 @@
       <td><%= teacherData.first_name %></td>
       <td><%= teacherData.last_name %></td>
       <td><%= teacherData.email %></td>
+
+      <% if(teacherData.SubjectId == undefined){ %>
+        <td>Unassigned</td>
+        <%} else {%>
+        <td><%= teacherData.Subject.subject_name%></td>
+      <%}%>
+
       <td><a href="/teacher/edit/<%=teacherData.id%>"><button type="button" name="Edit">EDIT</button></a></td>
       <td><a href="/teacher/delete/<%=teacherData.id%>"><button type="button" name="Delete">DELETE</button></a></td>
       </tr>

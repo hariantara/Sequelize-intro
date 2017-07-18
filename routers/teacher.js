@@ -2,27 +2,44 @@ const express = require('express');
 var router = express.Router();
 const database = require('../models/');
 
+//untuk validasi session , agar tidak bisa langsung nembak dengan link langsung
+router.use((req,res, next)=>{
+  if(req.session.user.role == 'academic' || req.session.user.role == 'headmaster' || req.session.user.role == 'teacher'){
+    next();
+  }else{
+    res.send('You have to login as Headmaster or Academic Coordinator');
+  }
+})
+
 //show teacher table
 router.get('/', function(req, res){
-  database.Teacher.findAll()
+  database.Teacher.findAll({
+    include: [database.Subject],
+    order:[["id"]]
+  })
   .then((results) =>{
     res.render('teacher', {dataTeacher:results})
   });
 });
-//show forom teacher
+//show form teacher and the DROP DOWN
 router.get('/add', function(req, res){
-    res.render('tform')
+  database.Subject.findAll()
+  .then((data)=> {
+    res.render('tform', {subjectData: data})
+  })
 });
 //add teacher data
 router.post('/add', function(req, res){
+  console.log("---->", req.body.SubjectId);
   database.Teacher.create({
     first_name: req.body.firstname,
     last_name: req.body.lastname,
     email:req.body.email,
+    SubjectId: req.body.SubjectId,
     createdAt: new Date(),
     updatedAt: new Date(),
   })
-  .then(() =>{
+  .then((result) =>{
       res.redirect('/teacher')
   })
 })
@@ -30,7 +47,12 @@ router.post('/add', function(req, res){
 router.get('/edit/:id', function(req, res){
   database.Teacher.findById(req.params.id)
   .then((result) =>{
-    res.render('editteacher', {id: result})
+    database.Subject.findAll()
+    .then((rows)=>{
+      // console.log("--------->", result);
+      // console.log("=========>", rows);
+      res.render('editteacher', {id: result, dataSubject: rows})
+    })
   })
 })
 //edit and update
@@ -39,6 +61,7 @@ router.post('/edit/:id', function(req, res){
     first_name: `${req.body.firstname}`,
     last_name:`${req.body.lastname}`,
     email:`${req.body.email}`,
+    SubjectId: `${req.body.ContactID}`,
     createdAt: new Date(),
     updatedAt: new Date()
   }, {

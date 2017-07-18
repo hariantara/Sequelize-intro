@@ -2,9 +2,21 @@ const express = require('express');
 var router = express.Router();
 const database = require('../models/');
 
+//untuk validasi saat login, agar tidak bisa langsung membuka link dari browser
+router.use((req,res, next)=>{
+  console.log("ROLEEEE",req.session.user.role);
+  if(req.session.user.role == 'academic' || req.session.user.role == 'headmaster' || req.session.user.role == 'teacher'){
+    next();
+  }else{
+    res.send('You have to login as Headmaster or Academic Coordinator');
+  }
+})
+
 //show teacher table
 router.get('/', function(req, res){
-  database.Students.findAll()
+  database.Students.findAll({
+    order:[["first_name"]]
+  })
   .then((results) =>{
     res.render('students', {dataStudent:results})
   });
@@ -54,6 +66,35 @@ router.post('/edit/:id', function(req, res){
 //delete
 router.get('/delete/:id', function(req, res){
   database.Students.destroy({where:{id:`${req.params.id}`}})
+  .then(() =>{
+    database.conjuction.destroy({where:{studentId:`${req.params.id}`}})
+    .then(() =>{
+      res.redirect('/student')
+    })
+  })
+})
+// add subject button
+router.get('/addsubject/:id', function(req, res){
+  database.Students.findById(req.params.id)
+  .then(data =>{
+    database.conjuction.findAll()
+    .then(con =>{
+      database.Subject.findAll()
+      .then(subdata =>{
+        console.log("=====>>>",subdata);
+        res.render('studentAddSubject', {sData:data, subjectDat:subdata, conj:con} )
+      })
+    })
+  })
+})
+//update addsubject data student
+router.post('/addsubject/:id', function(req, res){
+  database.conjuction.create({
+    subjectID: req.body.subjectID,
+    studentId: req.params.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
   .then(() =>{
     res.redirect('/student')
   })
